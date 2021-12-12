@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd">
+	
+	
+<!-- 	xml에서 값 넣기 -->
+	<bean id="student2" class="di2.spring.anno_xml.Student">
+		<constructor-arg value="dong"/>
+		<constructor-arg value="23"/>
+		<constructor-arg><list>
+				<value>running</value>
+				<value>baking</value>
+				<value>travel</value>
+			</list></constructor-arg>
+		<property name="height" value="187.5"></property>
+		<property name="weight" value="85.4"></property>
+	</bean>
+	
+	
+</beans>

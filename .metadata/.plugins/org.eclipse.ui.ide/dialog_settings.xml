@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+		<item value="C:\SpringSpace\SpringBbs_test\SpringBbs_test"/>
+		<item value="C:\SpringSpace\Team_Y_final"/>
+		<item value="C:\SpringSpace\ex06_Xml"/>
+		<item value="C:\SpringSpace\ex06_Anno"/>
+		<item value="C:\SpringSpace\ex05_Xml"/>
+		<item value="C:\SpringSpace\ex05_Anno"/>
+		<item value="C:\SpringSpace\ex04_Anno_aoptest"/>
+		<item value="C:\SpringSpace\ex04_Xml"/>
+		<item value="C:\SpringSpace\ex04_Anno"/>
+		<item value="C:\SpringSpace\ex03_Anno_Rest"/>
+		<item value="C:\SpringSpace\ex03_Xml_Rest"/>
+		<item value="C:\SpringSpace\ex02_Xml"/>
+		<item value="C:\SpringSpace\ex02_Anno"/>
+		<item value="C:\SpringSpace\ex01_Xml"/>
+		<item value="C:\SpringSpace\ex01_Anno"/>
+		<item value="C:\SpringSpace\ex00_Xml"/>
+		<item value="C:\SpringSpace\ex00_Anno"/>
+	</list>
+	<section name="ChooseWorkspaceDialogSettings">
+		<item key="DIALOG_X_ORIGIN" value="609"/>
+		<item key="DIALOG_Y_ORIGIN" value="274"/>
+	</section>
+	<section name="WORKBENCH_SETTINGS">
+		<list key="ENABLED_TRANSFERS">
+		</list>
+	</section>
+	<section name="org.eclipse.ui.dialogs.FilteredResourcesSelectionDialog">
+		<item key="ShowStatusLine" value="true"/>
+		<item key="History" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#x0D;&#x0A;&lt;History&gt;&#x0D;&#x0A;&lt;historyRootNode&gt;&#x0D;&#x0A;&lt;infoNode path=&quot;/Team_Y_final/src/main/webapp/WEB-INF/spring/root-context.xml&quot; type=&quot;1&quot;/&gt;&#x0D;&#x0A;&lt;infoNode path=&quot;/Team_Y_final/src/main/webapp/WEB-INF/views/customLogin.jsp&quot; type=&quot;1&quot;/&gt;&#x0D;&#x0A;&lt;infoNode path=&quot;/Team_Y_final/src/main/webapp/resources/html/index.html&quot; type=&quot;1&quot;/&gt;&#x0D;&#x0A;&lt;infoNode path=&quot;/Team_Y_final/src/main/resources/org/zerock/mapper/MemberMapper.xml&quot; type=&quot;1&quot;/&gt;&#x0D;&#x0A;&lt;infoNode path=&quot;/Team_Y_final/target/controller-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/org/zerock/mapper/MemberMapper.xml&quot; type=&quot;1&quot;/&gt;&#x0D;&#x0A;&lt;/historyRootNode&gt;&#x0D;&#x0A;&lt;/History&gt;"/>
+		<item key="ShowDerived" value="false"/>
+		<item key="FilterByLocation" value="false"/>
+		<item key="WorkingSet" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#x0D;&#x0A;&lt;workingSet workingSetName=&quot;&quot;/&gt;"/>
+		<section name="DialogBoundsSettings">
+			<item key="DIALOG_HEIGHT" value="500"/>
+			<item key="DIALOG_WIDTH" value="600"/>
+			<item key="DIALOG_X_ORIGIN" value="669"/>
+			<item key="DIALOG_Y_ORIGIN" value="191"/>
+			<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>
+		</section>
+	</section>
+</section>

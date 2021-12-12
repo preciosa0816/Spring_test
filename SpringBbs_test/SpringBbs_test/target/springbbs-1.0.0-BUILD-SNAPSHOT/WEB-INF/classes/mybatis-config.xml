@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+
+	<!--
+	defaultExecutorType : PreparedStatement 객체를 재 사용.
+	useGeneratedKeys : mysql이나 mssql 에서 자동으로 생성되는 키값을 강제로 생성 
+	defaultStatementTimeout : DB 접속 기다리는 시간을 30초로 셋팅 
+	-->
+    <settings>   
+        <setting name="defaultExecutorType"      value="REUSE"/>   
+		<setting name="defaultStatementTimeout" value="30000"/>
+    </settings> 
+    <!-- 별칭 설정 -->  
+	<typeAliases>	
+   		<typeAlias type="com.education.springbbs.dto.board.BoardDto" alias="boardDto" />
+	</typeAliases>
+</configuration>

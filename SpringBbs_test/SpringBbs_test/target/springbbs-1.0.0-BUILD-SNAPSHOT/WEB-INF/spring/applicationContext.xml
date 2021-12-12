@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.1.xsd
+		http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+    <!-- <bean id="dataSource"
+        class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property>
+        <property name="url"
+            value="jdbc:mysql://127.0.0.1:3306/sampledb?useSSL=false&amp;serverTimezone=UTC">
+        </property>
+        <property name="username" value="test"></property>
+        <property name="password" value="test"></property>
+    </bean> -->        
+    
+    <bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName" value="jdbc/academy" />
+		<property name="resourceRef" value="true" />
+	</bean>
+
+	 <!-- mybatis SqlSessionFactoryBean -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"></property>
+        <property name="configLocation" value="classpath:/mybatis-config.xml"></property>
+        <property name="mapperLocations" value="classpath:mappers/**/*Mapper*.xml"></property>
+    </bean>
+    
+        <!-- mybatis      -->
+    <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+        <constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"></constructor-arg>
+    </bean>
+
+
+
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource">
+            <ref bean="dataSource"/>
+        </property>
+    </bean>
+    
+   <aop:config>        
+        <aop:pointcut id="baseServiceMethods" expression="execution(* com.education.springbbs.biz.*.*Mgr.*(..))" />
+        <aop:advisor advice-ref="baseTransactionAdvice" pointcut-ref="baseServiceMethods" />
+    </aop:config>
+    
+    
+    <tx:advice id="baseTransactionAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <tx:method 
+                name="*" 
+                propagation="REQUIRED"
+                read-only="true" /> 
+            <tx:method 
+                name="insert*" 
+                propagation="REQUIRED"
+                rollback-for="Exception"
+                read-only="false" />
+            <tx:method 
+                name="update*" 
+                propagation="REQUIRED"
+                rollback-for="Exception"                
+                read-only="false" />
+            <tx:method 
+                name="delete*" 
+                propagation="REQUIRED"
+                rollback-for="Exception"                
+                read-only="false" />
+            <tx:method 
+                name="regist*" 
+                propagation="REQUIRED"
+                rollback-for="Exception"                
+                read-only="false" />
+            <tx:method 
+                name="create*" 
+                propagation="REQUIRED"
+                rollback-for="Exception"                
+                read-only="false" />
+            <tx:method 
+                name="*NewTrx" 
+                propagation="REQUIRES_NEW"
+                rollback-for="Exception"                
+                read-only="false" />
+        </tx:attributes>
+    </tx:advice> 
+    
+    
+    	
+
+ 	<!-- <bean id="timeCheckAdvice" class="com.education.springbbs.util.TimeCheckAdvice" />
+     <aop:config>
+    	<aop:aspect ref="timeCheckAdvice">
+    		<aop:around  method="timeCheck" pointcut="execution(* sayHello())" />    		
+    		<aop:around  method="timeCheck" pointcut="execution(public void app.example.aop.MessageServiceImpl.sayHello*())" />
+    		<aop:around  method="timeCheck" pointcut="execution(public void app.example.aop.MessageServiceImpl.*(..))" />
+    		<aop:around  method="timeCheck" pointcut="execution(* com.education.springbbs.biz.*.*MgrImpl.*(..))" /> 
+    		 <aop:around  method="timeCheck" pointcut="execution(* com.education.springbbs.biz.*.*Mgr.*(..))" />
+    		 
+    	</aop:aspect>
+    </aop:config>  -->
+ 
+
+		
+</beans>

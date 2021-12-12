@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd">
+
+	<bean id="bmiCalculator" class="di1.spring.xml2.BMICalculator">
+		<property name="lowWeight" value="18.5"/> 
+		<property name="normalWeight" value="23"/>
+		<property name="overWeight" value="25"/>
+		<property name="obesity" value="30"/>	
+	</bean>
+	<bean id="myInfo" class="di1.spring.xml2.MyInfo">		
+		<property name="name" value="hong"/> <!-- setter method가 존재해야함 -->
+		<property name="height" value="185"/>
+		<property name="weight" value="85"/>
+		<property name="hobbies">
+			<list>
+				<value>swimming</value>
+				<value>cooking</value>
+				<value>reading</value>
+			</list>
+		</property>
+		<property name="bmiCalculator">
+			<ref bean="bmiCalculator"/>
+		</property>
+	</bean>
+</beans>

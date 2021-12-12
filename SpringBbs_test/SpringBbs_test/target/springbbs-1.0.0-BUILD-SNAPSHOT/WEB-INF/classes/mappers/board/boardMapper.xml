@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="board.boardMaper">
+    <!-- 게시물 총 갯수 Default: PREPARED. -->	
+	<select id="selectListCnt"  parameterType="hashmap" resultType="int" statementType="PREPARED" >		
+		SELECT COUNT(*) AS COUNT FROM BOARD
+		
+	<!--	
+	 where 요소는 태그에 의해 컨텐츠가 리턴되면 단순히 “WHERE” 만을 추가한다. 게다가, 컨텐츠가 “AND” 나 “OR” 로 시작한다면, 그 “AND” 나 “OR”를 지워버린다. 
+	
+	예를 들면  
+		SELECT A,B,C,D FROM TABLE WHERE AND TITLE LIKE %#{searchValue}% 이런 쿼리가 발생하면 AND 키워드를 지워서 정상쿼리로 만들어 준다.
+	또한
+		SELECT A,B,C,D FROM TABLE  AND TITLE LIKE %#{searchValue}% 이런 쿼리가 발생하면 WHERE 키워드를 추가하여 정상쿼리로 만들어 준다.
+	-->		
+	<where>
+	    <!-- 동적 sql을 사용하려면 el 문법으로 이용할 수 있다. && 연산자는 and || 연산자는 or로 표기한다. test속성은 비교값을 연산 -->
+		<if test="searchKey != null and searchKey == 'title'">
+			AND TITLE LIKE  '%'||#{searchValue}||'%'
+		</if>
+		
+		<if test="searchKey != null and searchKey == 'name'">
+			AND NAME LIKE  '%'||#{searchValue}||'%'
+		</if>
+	</where>
+	</select>
+	
+<!-- 목록 출력 -->		
+	<select id="selectBoardList"  parameterType="map" resultType="boardDto" statementType="PREPARED" >
+		
+
+		SELECT * 
+		FROM (SELECT ROWNUM AS RNUM, A.*
+		      FROM (SELECT rownum AS num ,num as seq, TITLE, NAME, READCOUNT,
+		                   TO_CHAR(WRITEDAY,'YYYY-MM-DD') as WRITEDAY 
+		            FROM   BOARD
+		            ORDER  BY NUM DESC) A 
+		         	<where>
+					<!--
+					 동적 sql을 사용하려면 el 문법으로 이용할 수 있다. 
+					 && 연산자는 and || 연산자는 or로 표기한다. test속성은 비교값을 연산
+					 
+					 Like 연산자를 사용할 때는 주의 해야 한다.
+					 '%#{searchValue}%' 와 같이 작성할 경우 MyBatis 에서는'%'#{searchValue}'%' 와 같이 인식하기 때문에 에러가 출력 된다.
+					왜 이런증상이 나오냐면 바인딩 할때 mybatis에서 "’"값을 채워서 넘어 오기 때문이다.
+					이럴경우  '%'||#{searchValue}||'%' 와 같이 Built-In 함수를 
+					 
+					 문자열 비교 및 공백값 체크는 '' 홑 따옴표로 한다.
+					 searchKey != '' 
+					  -->
+					<if test="searchKey != null and searchKey == 'title'">
+						AND TITLE LIKE '%'||#{searchValue}||'%'
+					</if>
+					
+					<if test="searchKey != null and searchKey == 'name'">
+						AND NAME LIKE '%'||#{searchValue}||'%'
+					</if>
+				</where>         		            
+		            ) B
+		<![CDATA[ 
+		WHERE  #{startNum} <= RNUM and RNUM <=  #{endNum}
+		]]>
+	</select>	
+	
+	<!-- 내용보기 -->	
+	<select id="view"  parameterType="int" resultType="com.education.springbbs.dto.board.BoardDto" statementType="PREPARED" >
+		SELECT 
+			NUM, TITLE, NAME, READCOUNT,TO_CHAR(WRITEDAY,'YYYY-MM-DD') as WRITEDAY,CONTENT 
+		FROM   BOARD
+		WHERE NUM=#{seq}
+	</select>
+
+</mapper>
+
+

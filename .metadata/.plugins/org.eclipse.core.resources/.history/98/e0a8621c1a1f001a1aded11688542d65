@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.zerock.mapper.ForumAttachMapper">
+	
+	<insert id="insert">
+		insert into tbl_attach_team (uuid, uploadpath, filename, filetype, fno)
+		values(#{uuid}, #{uploadPath},#{fileName}, #{fileType}, #{fno})
+	</insert>
+
+	<delete id="delete">
+		delete from tbl_attach_team where uuid=#{uuid}
+	</delete>
+	
+	<delete id="deleteAll">
+		delete from tbl_attach_team where fno=#{fno}
+	</delete>
+
+	<select id="findByBno" resultType="org.zerock.domain.ForumAttachVO">
+		select * from tbl_attach_team where fno = #{fno}
+	</select>
+
+	<select id="getOldFiles" resultType="org.zerock.domain.ForumAttachVO">
+		select * from tbl_attach_team where uploadpath=to_char(sysdate-1,'yyyy\mm\dd')
+	</select>
+
+
+
+</mapper>

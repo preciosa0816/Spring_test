@@ -1,0 +1,99 @@
+@CHARSET "UTF-8";
+ol,ul,li{list-style:none;text-decoration: none;} 
+
+/* #ex1{float:left; width:90px; height:55px; overflow:hidden; }
+#ex1 input{ margin:1px 1px; width:80px; height:20px; color:#777; border:1px solid #bbb;}
+#ex2{width:80px; height:55px; overflow:hidden;  }
+#ex2 .ck{ padding-top:2px; width:60px; height:24px; font-size:11px;}
+ */
+#afterLogin{display:none; overflow:hidden}
+
+/* unvisited link */
+a:link {
+  color: red;
+}
+
+/* visited link */
+a:visited {
+  color: green;
+}
+
+/* mouse over link */
+a:hover {
+  color: hotpink;
+}
+
+/* selected link */
+a:active {
+  color: blue;
+}
+
+tbody {
+	text-align: center;
+}
+
+div {
+	position: relative;
+}
+  /* Add some padding on document's body to prevent the content
+    to go underneath the header and footer */
+    body{        
+        padding-top: 60px;
+        padding-bottom: 40px;
+    }
+    .container{
+    	vertical-align: middle;
+        width: 80%;
+        margin: 0 auto; /* Center the DIV horizontally */
+    }
+
+  .fixed-header, .fixed-footer{
+        width: 100%;
+        position: fixed;        
+        background: #333;
+        padding: 10px 0;
+        color: #fff;
+    }
+    .fixed-header{
+        top: 0;
+    }
+    .fixed-footer{
+        bottom: 0;
+    }    
+        nav a{
+        color: #fff;
+        text-decoration: none;
+        padding: 7px 25px;
+        display: inline-block;
+    }
+    .container p{
+        line-height: 200px; /* Create scrollbar to test positioning */
+    }
+    .container table {
+    	vertical-align: middle;
+    	padding : 0px;
+    	width : inherit;
+    	margin : 50px;
+    	border-color: darkslategra
+    }
+    
+    .container table caption {
+    	
+    	margin : 20px;
+    	font-size : x-large;
+    }
+    
+    
+    .login {
+    
+    }
+    .login_input {
+	    text-align: center;
+	    margin: 300px;
+    }
+    
+    .login_ck  {
+    }
+    .btn {
+    
+    }
